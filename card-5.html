@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viva a vida é uma festa</title>
+    <link rel="stylesheet" type="text/css" href="Imagens-cards5/style.css">
+    <link rel="shortcut icon" href="Imagens-cards5/logovida-removebg-preview.png" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <a href="#"><img src="Imagens-cards5/logovida-removebg-preview.png"></a>
+        <div class="toggle"><img src="Imagens-cards/toggle.png"></div>
+    </header>
+    <div class="banner">
+        <div class="content">
+            <h2><span> Viva a vida é uma festa</span> </h2>
+            <p>Apesar da proibição da música por gerações de sua família, o jovem Miguel sonha em se tornar um músico
+                talentoso como seu ídolo Ernesto de la Cruz. Desesperado para provar seu talento, Miguel se encontra na
+                deslumbrante e colorida Terra dos Mortos. Depois de conhecer um charmoso malandro chamado Héctor, os
+                dois novos amigos embarcam em uma jornada extraordinária para desvendar a verdadeira história por trás
+                da história da família de Miguel.</p>
+            <a href="#" class="play" onclick="toggle();"><img src="Imagens-cards/play.png">Trailer</a>
+            <div class="slide"></div>
+            <ul class="sci">
+
+                <li><a href="file:///C:/Users/Usu%C3%A1rio/OneDrive/%C3%81rea%20de%20Trabalho/prototipo/index.html"><img
+                            src="Imagens-cards/voltar.png"></a></li>
+            </ul>
+
+        </div>
+        <div class="estrelas">
+            <ul class="avaliacao">
+                <li class="star-icon ativo" data-avaliacao="1"></li>
+                <li class="star-icon" data-avaliacao="2"></li>
+                <li class="star-icon" data-avaliacao="3"></li>
+                <li class="star-icon" data-avaliacao="4"></li>
+                <li class="star-icon" data-avaliacao="5"></li>
+            </ul>
+        </div>
+        <div class="classificacao"><img src="Indicação/livre.png"></div>
+        <div class="elenco">
+            <h1>elenco</h1>
+
+
+            <ol type="1">
+
+
+                <li>Miguel (Léo Jaime)</li>
+                <li>Ernesto de la Cruz (Raul Gil)</li>
+                <li>Héctor (Miguel Falabella)</li>
+                <li>Mama Imelda (Kacau Gomes)</li>
+                <li>Coco (Ermínia Guedes)</li>
+                <li>Enrique (Rodrigo Lombardi)</li>
+                <li>Abuelita (Christiane Torloni)</li>
+                <li>Tio Berto (Marcelo Garcia)</li>
+                <li>Frida Kahlo (Camila Márdila)</li>
+
+
+
+            </ol>
+        </div>
+    </div>
+    <div class="seu-slider">
+        <div class="suas-fotos">
+            <input type="radio" name="slider" id="img1" checked>
+            <input type="radio" name="slider" id="img2">
+            <input type="radio" name="slider" id="img3">
+            <input type="radio" name="slider" id="img4">
+
+            <div class="sua-slide m1">
+                <img src="Imagens-cards5/slide-01.jpg" alt="img1">
+            </div>
+            <div class="sua-slide m2">
+                <img src="Imagens-cards5/slide-02.jpg" alt="img2">
+            </div>
+            <div class="sua-slide m3">
+                <img src="Imagens-cards5/slide-03.jpg" alt="img3">
+            </div>
+            <div class="sua-slide m4">
+                <img src="Imagens-cards5/slide-04.jpg" alt="img4">
+            </div>
+        </div>
+        <div class="suas-dots">
+            <label for="img1"></label>
+            <label for="img2"></label>
+            <label for="img3"></label>
+            <label for="img4"></label>
+        </div>
+    </div>
+
+    <div class="trailer">
+        <video src="Imagens-cards5/Viva - A Vida é uma Festa - trailer.mp4" controls="true"></video>
+        <img src="Imagens-cards/close.png" class="close" onclick="toggle();">
+    </div>
+    <script type="text/javascript">
+        function toggle() {
+            var trailer = document.querySelector('.trailer');
+            var video = document.querySelector('video');
+            trailer.classList.toggle('active');
+            video.currentTime = 0;
+            video.pause();
+
+        }
+    </script>
+    <script>
+        var stars = document.querySelectorAll('.star-icon');
+        document.addEventListener('click', function (e) {
+            var classStar = e.target.classList;
+            if (!classStar.contains('ativo')) {
+                stars.forEach(function (star) {
+                    star.classList.remove('ativo');
+                });
+                classStar.add('ativo');
+                console.log(e.target.getAttribute('data-avaliacao'))
+            }
+        });
+    </script>
+    <script>
+        const radios = document.querySelectorAll('input[type=radio][name=slider]');
+        let currentIndex = 0;
+
+        function changeSlide() {
+            radios[currentIndex].checked = false;
+            currentIndex = (currentIndex + 1) % radios.length;
+            radios[currentIndex].checked = true;
+        }
+
+        setInterval(changeSlide, 3000); // Mude de imagem a cada 3 segundos (3000ms).
+    </script>
+
+</body>
+
+</html>

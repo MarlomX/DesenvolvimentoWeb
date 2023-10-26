@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hereditário</title>
+    <link rel="stylesheet" type="text/css" href="Imagens-cards3/style.css">
+    <link rel="shortcut icon" href="Imagens-cards3/logo-here.png" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <a href="#"><img src="Imagens-cards3/logo-here.png"></a>
+        <div class="toggle"><img src="Imagens-cards/toggle.png"></div>
+    </header>
+    <div class="banner">
+        <div class="content">
+            <h2><span> Hereditário </span> </h2>
+            <p>Após a morte da reclusa avó, a família Graham começa a desvendar algumas coisas. Mesmo após a partida da
+                matriarca, ela permanece como se fosse uma sombra sobre a família, especialmente sobre a solitária neta
+                adolescente, Charlie, por quem ela sempre manteve uma fascinação não usual. Com um crescente terror
+                tomando conta da casa, a família explora lugares mais escuros para escapar do infeliz destino que
+                herdaram.</p>
+            <a href="#" class="play" onclick="toggle();"><img src="Imagens-cards/play.png">Trailer</a>
+            <div class="slide"></div>
+            <ul class="sci">
+
+                <li><a href="file:///C:/Users/Usu%C3%A1rio/OneDrive/%C3%81rea%20de%20Trabalho/prototipo/index.html"><img
+                            src="Imagens-cards/voltar.png"></a></li>
+            </ul>
+
+        </div>
+        <div class="estrelas">
+            <ul class="avaliacao">
+                <li class="star-icon ativo" data-avaliacao="1"></li>
+                <li class="star-icon" data-avaliacao="2"></li>
+                <li class="star-icon" data-avaliacao="3"></li>
+                <li class="star-icon" data-avaliacao="4"></li>
+                <li class="star-icon" data-avaliacao="5"></li>
+            </ul>
+        </div>
+        <div class="classificacao"><img src="Indicação/16.png"></div>
+        <div class="elenco">
+            <h1>elenco</h1>
+
+
+            <ol type="1">
+
+
+
+                <li>Toni Collette (Annie Graham)</li>
+                <li>Gabriel Byrne (Steve Graham)</li>
+                <li>Alex Wolff (Peter Graham)</li>
+                <li>Milly Shapiro (Charlie Graham)</li>
+                <li>Ann Dowd (Joan)</li>
+
+
+
+
+
+            </ol>
+        </div>
+    </div>
+    <div class="seu-slider">
+        <div class="suas-fotos">
+            <input type="radio" name="slider" id="img1" checked>
+            <input type="radio" name="slider" id="img2">
+            <input type="radio" name="slider" id="img3">
+            <input type="radio" name="slider" id="img4">
+
+            <div class="sua-slide m1">
+                <img src="Imagens-cards3/slide-1.jpg" alt="img1">
+            </div>
+            <div class="sua-slide m2">
+                <img src="Imagens-cards3/slide-2.jpg" alt="img2">
+            </div>
+            <div class="sua-slide m3">
+                <img src="Imagens-cards3/slide-3.jpg" alt="img3">
+            </div>
+            <div class="sua-slide m4">
+                <img src="Imagens-cards3/slide-4.jpg" alt="img4">
+            </div>
+        </div>
+        <div class="suas-dots">
+            <label for="img1"></label>
+            <label for="img2"></label>
+            <label for="img3"></label>
+            <label for="img4"></label>
+        </div>
+    </div>
+
+    <div class="trailer">
+        <video src="Imagens-cards3/HEREDITÁRIO _ Trailer (2018) Legendado HD.mp4" controls="true"></video>
+        <img src="Imagens-cards/close.png" class="close" onclick="toggle();">
+    </div>
+    <script type="text/javascript">
+        function toggle() {
+            var trailer = document.querySelector('.trailer');
+            var video = document.querySelector('video');
+            trailer.classList.toggle('active');
+            video.currentTime = 0;
+            video.pause();
+
+        }
+    </script>
+    <script>
+        var stars = document.querySelectorAll('.star-icon');
+        document.addEventListener('click', function (e) {
+            var classStar = e.target.classList;
+            if (!classStar.contains('ativo')) {
+                stars.forEach(function (star) {
+                    star.classList.remove('ativo');
+                });
+                classStar.add('ativo');
+                console.log(e.target.getAttribute('data-avaliacao'))
+            }
+        });
+    </script>
+    <script>
+        const radios = document.querySelectorAll('input[type=radio][name=slider]');
+        let currentIndex = 0;
+
+        function changeSlide() {
+            radios[currentIndex].checked = false;
+            currentIndex = (currentIndex + 1) % radios.length;
+            radios[currentIndex].checked = true;
+        }
+
+        setInterval(changeSlide, 3000); // Mude de imagem a cada 3 segundos (5000ms).
+    </script>
+
+</body>
+
+</html>

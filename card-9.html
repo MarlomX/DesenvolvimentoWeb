@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardiões da Galáxia</title>
+    <link rel="stylesheet" type="text/css" href="Imagens-cards9/style.css">
+    <link rel="shortcut icon" href="Imagens-cards9/guardi-removebg-preview.png" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <a href="#"><img src="Imagens-cards9/guardi-removebg-preview.png"></a>
+        <div class="toggle"><img src="Imagens-cards/toggle.png"></div>
+    </header>
+    <div class="banner">
+        <div class="content">
+            <h2><span> Guardiões da Galáxia</span> </h2>
+            <p>O aventureiro do espaço Peter Quill torna-se presa de caçadores de recompensas depois que rouba a esfera
+                de um vilão traiçoeiro, Ronan. Para escapar do perigo, ele faz uma aliança com um grupo de quatro
+                extraterrestres. Quando Quill descobre que a esfera roubada possui um poder capaz de mudar os rumos do
+                universo, ele e seu grupo deverão proteger o objeto para salvar o futuro da galáxia.</p>
+            <a href="#" class="play" onclick="toggle();"><img src="Imagens-cards/play.png">Trailer</a>
+            <div class="slide"></div>
+            <ul class="sci">
+
+                <li><a href="file:///C:/Users/Usu%C3%A1rio/OneDrive/%C3%81rea%20de%20Trabalho/prototipo/index.html"><img
+                            src="Imagens-cards/voltar.png"></a></li>
+            </ul>
+
+        </div>
+        <div class="estrelas">
+            <ul class="avaliacao">
+                <li class="star-icon ativo" data-avaliacao="1"></li>
+                <li class="star-icon" data-avaliacao="2"></li>
+                <li class="star-icon" data-avaliacao="3"></li>
+                <li class="star-icon" data-avaliacao="4"></li>
+                <li class="star-icon" data-avaliacao="5"></li>
+            </ul>
+        </div>
+        <div class="classificacao"><img src="Indicação/livre.png"></div>
+        <div class="elenco">
+            <h1>elenco</h1>
+
+
+            <ol type="1">
+
+
+                <li>Chris Pratt (Peter Quill / Senhor das Estrelas)</li>
+                <li>Zoe Saldana (Gamora)</li>
+                <li>Dave Bautista (Drax, o Destruidor)</li>
+                <li>Vin Diesel (Groot) - (Ele diz apenas "Eu sou Groot")</li>
+                <li>Bradley Cooper (Rocket, o guaxinim)</li>
+                <li>Lee Pace (Ronan, o Acusador)</li>
+                <li>Michael Rooker (Yondu Udonta)</li>
+                <li>Karen Gillan (Nebulosa)</li>
+                <li>Djimon Hounsou (Korath, o Perseguidor)</li>
+                <li>John C. Reilly (Rhomann Dey)</li>
+                <li>Glenn Close (Nova Prime Irani Rael)</li>
+                <li>Benicio del Toro (O Colecionador)</li>
+
+
+
+            </ol>
+        </div>
+    </div>
+    <div class="seu-slider">
+        <div class="suas-fotos">
+            <input type="radio" name="slider" id="img1" checked>
+            <input type="radio" name="slider" id="img2">
+            <input type="radio" name="slider" id="img3">
+            <input type="radio" name="slider" id="img4">
+
+            <div class="sua-slide m1">
+                <img src="Imagens-cards9/slide1.jpg" alt="img1">
+            </div>
+            <div class="sua-slide m2">
+                <img src="Imagens-cards9/slide2.jpg" alt="img2">
+            </div>
+            <div class="sua-slide m3">
+                <img src="Imagens-cards9/slide3.jpg" alt="img3">
+            </div>
+            <div class="sua-slide m4">
+                <img src="Imagens-cards9/slide4.jpg" alt="img4">
+            </div>
+        </div>
+        <div class="suas-dots">
+            <label for="img1"></label>
+            <label for="img2"></label>
+            <label for="img3"></label>
+            <label for="img4"></label>
+        </div>
+    </div>
+
+    <div class="trailer">
+        <video src="Imagens-cards9/Guardiões da Galáxia - Trailer Youtube.mp4" controls="true"></video>
+        <img src="Imagens-cards/close.png" class="close" onclick="toggle();">
+    </div>
+    <script type="text/javascript">
+        function toggle() {
+            var trailer = document.querySelector('.trailer');
+            var video = document.querySelector('video');
+            trailer.classList.toggle('active');
+            video.currentTime = 0;
+            video.pause();
+
+        }
+    </script>
+    <script>
+        var stars = document.querySelectorAll('.star-icon');
+        document.addEventListener('click', function (e) {
+            var classStar = e.target.classList;
+            if (!classStar.contains('ativo')) {
+                stars.forEach(function (star) {
+                    star.classList.remove('ativo');
+                });
+                classStar.add('ativo');
+                console.log(e.target.getAttribute('data-avaliacao'))
+            }
+        });
+    </script>
+    <script>
+        const radios = document.querySelectorAll('input[type=radio][name=slider]');
+        let currentIndex = 0;
+
+        function changeSlide() {
+            radios[currentIndex].checked = false;
+            currentIndex = (currentIndex + 1) % radios.length;
+            radios[currentIndex].checked = true;
+        }
+
+        setInterval(changeSlide, 3000); // Mude de imagem a cada 3 segundos (3000ms).
+    </script>
+
+</body>
+
+</html>
