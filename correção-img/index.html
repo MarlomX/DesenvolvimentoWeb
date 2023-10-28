@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homem-Aranha através do aranhaverso.</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="shortcut icon" href="imagens-card1/logo.png" type="image/x-icon">
+    <style>
+        body {
+            background-image: url('heredirario.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="#"><img src="logo-here.png"></a>
+        <div class="toggle"><img src="toggle.png"></div>
+    </header>
+    <div class="banner">
+        <div class="content">
+            <h2><span> Aranhaverso </span></h2>
+            <p>Miles Morales está de volta para o próximo capítulo da saga vencedora do Oscar®. Depois de se reunir com
+                Gwen Stacy, o amigão da vizinhança e protetor em tempo integral do Brooklyn é catapultado através do
+                Multiverso, onde ele encontra um time de Pessoas-Aranha que precisam proteger a própria existência.
+                Quando os heróis não conseguem se unir para lidar com uma nova ameaça, Miles se vê dividido e precisa
+                redefinir o que significa ser um herói para que ele consiga salvar as pessoas que mais ama.</p>
+            <a href="#" class="play" onclick="toggle();"><img src="play.png">Trailer</a>
+            <div class="slide"></div>
+            <ul class="sci">
+                <li><a href="file:///C:/Users/Usu%C3%A1rio/OneDrive/%C3%81rea%20de%20Trabalho/prototipo/index.html"><img
+                            src="voltar.png"></a></li>
+            </ul>
+        </div>
+
+
+        <div class="estrelas">
+            <ul class="avaliacao">
+                <li class="star-icon ativo" data-avaliacao="1"></li>
+                <li class="star-icon" data-avaliacao="2"></li>
+                <li class="star-icon" data-avaliacao="3"></li>
+                <li class="star-icon" data-avaliacao="4"></li>
+                <li class="star-icon" data-avaliacao="5"></li>
+            </ul>
+        </div>
+        <div class="classificacao"><img src="livre.png"></div>
+        <div class="elenco">
+            <h1>elenco</h1>
+
+
+            <ol type="1">
+
+
+                <li>Miles Morales (Shameik Moore)</li>
+                <li>Gwen Stacy (Hailee Steinfeld)</li>
+                <li>Peter B. Parker (Homem-Aranha) (Jake Johnson)</li>
+                <li>Homem-Aranha 2099 (Oscar Isaac)</li>
+                <li>Doutor Octopus (Kathryn Hahn)</li>
+                <li>Mãe de Miles Morales (Rio Morales) (Lauren Vélez)</li>
+                <li>Peter Parker (Homem-Aranha) (Tobey Maguire)</li>
+                <li>Ben Reilly (Homem-Aranha) (Andy Samberg)</li>
+                <li>Jessica Drew (Issa Rae)</li>
+                <li>George Stacy (Shea Whigham)</li>
+                <li>Gatuno (Donald Glover)</li>
+                <li>Spectacular Spider-Man (Josh Keaton)</li>
+
+
+
+            </ol>
+        </div>
+    </div>
+
+    <div class="trailer">
+        <video src="HEREDITÁRIO _ Trailer (2018) Legendado HD.mp4" controls="true"></video>
+        <img src="close.png" class="close" onclick="toggle();">
+    </div>
+    <script type="text/javascript">
+        function toggle() {
+            var trailer = document.querySelector('.trailer');
+            var video = document.querySelector('video');
+            trailer.classList.toggle('active');
+            video.currentTime = 0;
+            video.pause();
+
+        }
+    </script>
+    <script>
+        var stars = document.querySelectorAll('.star-icon');
+        document.addEventListener('click', function (e) {
+            var classStar = e.target.classList;
+            if (!classStar.contains('ativo')) {
+                stars.forEach(function (star) {
+                    star.classList.remove('ativo');
+                });
+                classStar.add('ativo');
+                console.log(e.target.getAttribute('data-avaliacao'))
+            }
+        });
+    </script>
+
+</body>
+
+</html>
