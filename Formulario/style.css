@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    background: linear-gradient(to bottom, #414142, rgb(54, 1, 85));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: sans-serif;
+}
+
+.navbar {
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .titulo {
+    color: #e509d6;
+    box-sizing: border-box;
+    display: flex;
+    position: absolute;
+    left: 40%;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.5em;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+.logo img {
+    width: 100px;
+
+}
+
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    display: inline;
+    margin-right: 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    border-bottom: 2px solid #e509d6;
+}
+
+.navbar .search-box {
+    position: absolute;
+    /* top: 50%; */
+    left: 87%;
+    transform: translate(-50%, 50%);
+    height: 40px;
+    padding: 10px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 0;
+
+
+}
+
+.navbar .search-box .search-txt {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    line-height: 40px;
+    transition: .2s;
+    width: 0;
+}
+
+.navbar .search-box .search-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.navbar .search-box:hover>.search-txt {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.navbar .search-box:hover>.search-btn {
+    background: white;
+}
+
+.table-pai {
+    padding: 0 10%;
+    margin: 40px auto 0;
+    text-align: center;
+
+}
+
+.table-pai img {
+    height: 70px;
+    margin-bottom: 10px;
+
+}
+
+
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead {
+    background-color: rgb(109, 24, 130);
+}
+
+.table thead tr th {
+    font: size 14px;
+    font-weight: medium;
+    letter-spacing: 0.35px;
+    color: #fff;
+    opacity: 1;
+    padding: 12px;
+    vertical-align: top;
+    border: 1px solid #fff;
+
+}
+
+.table tbody tr td {
+    font-size: 14px;
+    letter-spacing: 0.35px;
+    font-weight: normal;
+    color: #f1f1f1;
+    background-color: rgb(203, 10, 251);
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #FFF;
+
+}
+
+.table tbody tr td .botaoEditar {
+    width: 100%;
+    text-decoration: none;
+    line-height: 25px;
+    display: block;
+    background-color: rgb(10, 206, 75);
+    color: #000000;
+    text-align: center;
+    user-select: none;
+    border-bottom: 2px solid #f1f1f1;
+    font-size: 14px;
+    opacity: 1;
+}
+
+.table tr td .botaoExcluir {
+    width: 100%;
+    text-decoration: none;
+    line-height: 25px;
+    display: block;
+    background-color: rgb(206, 10, 10);
+    color: #000000;
+    text-align: center;
+    user-select: none;
+    border-bottom: 2px solid #f1f1f1;
+    font-size: 14px;
+    opacity: 1;
+}
+
+.botaoAdicionar {
+    width: 35%;
+    text-decoration: none;
+    line-height: 35px;
+    display: block;
+    background-color: rgb(36, 10, 206);
+    color: #000000;
+    text-align: center;
+    user-select: none;
+    border-bottom: 2px solid #f1f1f1;
+    font-size: 14px;
+    opacity: 1;
+    margin: 0 auto;
+    margin-top: 20px;
+
+}
+
+
+.editable-cell {
+    white-space: pre-wrap;
+    /* Outros estilos */
+}

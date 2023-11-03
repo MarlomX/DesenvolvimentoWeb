@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Edit</title>
+</head>
+<header>
+    <nav class="navbar">
+        <div class="titulo">
+            <p>Purple Filmes</p>
+        </div>
+
+        <div class="logo">
+            <img src="Logo.png" alt="Filmes">
+        </div>
+        <div class="menu">
+
+            <ul>
+
+                <li><a href="index.html">Início</a></li>
+                <li><a href="serie.html">Séries</a></li>
+                <li><a href="index.html">Filmes</a></li>
+                <li><a href="#">Minha Lista</a></li>
+            </ul>
+        </div>
+        <div class="search-box">
+            <input type="text" class="search-txt" placeholder="Pesquisar">
+            <a href="#" class="search-btn">
+                <img src="loupe.png" alt="Lupa" height="20" width="20">
+            </a>
+    </nav>
+</header>
+
+<body>
+    <div class="table-pai">
+    
+        <img src="Logo.png" alt="Logo">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Sinopse</th>
+                    <th>Faixa etária</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Titulo" class="editable-cell">Homem Aranha</td>
+                    <td data-label="Sinopse" class="editable-cell">Uma sinopse do filme 1.</td>
+                    <td data-label="Faixa etária" class="editable-cell">18</td>
+                    <td>
+                        <a href="#" class="botaoEditar" onclick="editarLinha(this)">Editar</a>
+                    </td>
+                    <td>
+                        <button class="botaoExcluir" onclick="excluirLinha(this)">Excluir</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td data-label="Titulo" class="editable-cell">Homem Aranha</td>
+                    <td data-label="Sinopse" class="editable-cell">Uma sinopse do filme 1.</td>
+                    <td data-label="Faixa etária" class="editable-cell">18</td>
+                    <td>
+                        <a href="#" class="botaoEditar" onclick="editarLinha(this)">Editar</a>
+                    </td>
+                    <td>
+                        <button class="botaoExcluir" onclick="excluirLinha(this)">Excluir</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td data-label="Titulo" class="editable-cell">Homem Aranha</td>
+                    <td data-label="Sinopse" class="editable-cell">Uma sinopse do filme 1.</td>
+                    <td data-label="Faixa etária" class="editable-cell">18</td>
+                    <td>
+                        <a href="#" class="botaoEditar" onclick="editarLinha(this)">Editar</a>
+                    </td>
+                    <td>
+                        <button class="botaoExcluir" onclick="excluirLinha(this)">Excluir</button>
+                    </td>
+                </tr>
+
+
+
+            </tbody>
+        </table>
+
+        <!-- Botão para adicionar nova linha -->
+        <a href="#" class="botaoAdicionar">Adicionar Filme </a>
+
+    </div>
+
+    <script>
+        // Função para adicionar uma nova linha
+        function adicionarLinha() {
+            const tableBody = document.querySelector("table tbody");
+
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td data-label="Titulo" class="editable-cell">Novo Filme</td>
+                <td data-label="Sinopse" class="editable-cell">Nova sinopse do filme.</td>
+                <td data-label="Faixa etária" class="editable-cell">Livre</td>
+                <td>
+                    <a href="#" class="botaoEditar" onclick="editarLinha(this)">Editar</a>
+                </td>
+                <td>
+                    <button class="botaoExcluir" onclick="excluirLinha(this)">Excluir</button>
+                </td>
+            `;
+
+            tableBody.appendChild(newRow);
+        }
+
+        // Função para editar uma linha
+        function editarLinha(link) {
+            // Implemente a lógica de edição aqui
+        }
+
+        // Função para excluir uma linha
+        function excluirLinha(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+        }
+    </script>
+</body>
+
+</html>
