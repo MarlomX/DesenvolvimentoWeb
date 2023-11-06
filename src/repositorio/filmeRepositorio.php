@@ -1,7 +1,7 @@
 <?php 
-    require "src\\modelo\\filme.php";
-    require "src\\repositorio\\imagensRepositorio.php";
-    require "src\\repositorio\\elencoRepositorio.php";
+    require_once ("src\\modelo\\filme.php");
+    require_once ("src\\repositorio\\imagensRepositorio.php");
+    require_once ("src\\repositorio\\elencoRepositorio.php");
 
     class FilmeRepositorio{
 
@@ -50,12 +50,22 @@
             return $this->formarObjeto($dados);
         }
 
+        public function idPeloTitulo(string $titulo): int  {
+            $sql = "SELECT * FROM filmes WHERE titulo = ?";
+            $statement = $this->pdo->prepare($sql);
+            $statement->bindValue(1,$titulo);
+            $statement->execute();
+    
+            $dados = $statement->fetch(PDO::FETCH_ASSOC);
+            
+            return $dados['id'];
+        }
+
         public function deletar(int $id){
             $imagensRepositorio = new ImagensRepositorio($this->pdo);
             $imagensRepositorio->deletar($id);
             $elencoRepositorio = new elencoRepositorio($this->pdo);
             $elencoRepositorio->deletar($id);
-
             $sql = "DELETE FROM filmes WHERE id = ?";
             $statement = $this->pdo->prepare($sql);
             $statement->bindValue(1,$id);
@@ -72,10 +82,11 @@
             $statement->bindValue(4,$filme->getClasificacao());
             $statement->bindValue(5, $filme->getNota());
             $statement->execute();
+            $id = $this->idPeloTitulo($filme->getTitulo());
             $imagensRepositorio = new ImagensRepositorio($this->pdo);
-            $imagensRepositorio->salvar($filme->getImagens());
+            $imagensRepositorio->salvar($filme->getImagens(),$id);
             $elencoRepositorio = new elencoRepositorio($this->pdo);
-            $elencoRepositorio->salvar($filme->getElenco(), $filme->getId());
+            $elencoRepositorio->salvar($filme->getElenco(), $id);
         }
 
         public function atualizar(Filme $filme) {

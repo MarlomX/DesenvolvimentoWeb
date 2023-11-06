@@ -15,10 +15,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?=$filme->getTitulo()?></title>
     <link rel="stylesheet" type="text/css" href="styleCard.css">
-    <link rel="shortcut icon" href=<?=$filme->getImagens()->getLogo()?> type="image/x-icon">
+    <link rel="shortcut icon" href=<?=$filme->getImagens()->getLogoDiretorio()?> type="image/x-icon">
     <style>
         body {
-            background-image: url('<?=$filme->getImagens()->getFundo()?>');
+            background-image: url('<?=$filme->getImagens()->getFundoDiretorio()?>');
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
@@ -26,10 +26,8 @@
 </head>
 
 <body>
-    <p><?=$filme->getImagens()->getFundo()?></p>
-
     <header>
-        <a href="#"><img src="<?=$filme->getImagens()->getLogo()?>"></a>
+        <a href="#"><img src="<?=$filme->getImagens()->getLogoDiretorio()?>"></a>
         <div class="toggle"><img src="imagens\imagensCards\toggle.png"></div>
     </header>
     <div class="banner">
@@ -73,7 +71,7 @@
     </div>
 
     <div class="trailer">
-        <video src="<?=$filme->getImagens()->getTrailer()?>" controls="true"></video>
+        <video src="<?=$filme->getImagens()->getTrailerDiretorio()?>" controls="true"></video>
         <img src="imagens\imagensCards\close.png" class="close" onclick="toggle();">
     </div>
     <script type="text/javascript">

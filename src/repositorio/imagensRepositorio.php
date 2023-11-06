@@ -29,17 +29,36 @@
         }
 
         public function deletar(int $id){
+            $filmeDeletado = $this->buscarPorId( $id );
+            $this->deletarImagensDiretorio( $filmeDeletado );
+
             $sql = "DELETE FROM imagens_filme WHERE id_filme = ?";
             $statement = $this->pdo->prepare($sql);
             $statement->bindValue(1,$id);
             $statement->execute();
     
         }
+
+        //Exclui as imagens do diretorio se elas não forem as imagens padrão
+        private function deletarImagensDiretorio(imagensFilme $imagensFilme){
+            if($imagensFilme->getCapa() != 'capaPadrao' ){
+                unlink($imagensFilme->getCapaDiretorio());
+            }
+            if($imagensFilme->getLogo() != 'logoPadrao' ){
+                unlink($imagensFilme->getLogoDiretorio());
+            }
+            if($imagensFilme->getTrailer() != 'semTrailer' ){
+                unlink($imagensFilme->getTrailerDiretorio());
+            }
+            if($imagensFilme->getFundo() != 'fundoPadrao' ){
+                unlink($imagensFilme->getFundoDiretorio());
+            }
+        }
     
-        public function salvar(ImagensFilme $imagensFilme)  {
+        public function salvar(ImagensFilme $imagensFilme, int $id)  {
             $sql = "INSERT INTO imagens_filme (id_filme, capa, logo, trailer, fundo) VALUES (?,?,?,?,?)";
             $statement = $this->pdo->prepare($sql);
-            $statement->bindValue(1, $imagensFilme->getid());
+            $statement->bindValue(1, $id);
             $statement->bindValue(2, $imagensFilme->getCapa());
             $statement->bindValue(3, $imagensFilme->getLogo());
             $statement->bindValue(4, $imagensFilme->getFundo());

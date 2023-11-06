@@ -73,7 +73,6 @@
                 }
             });
         }
-
         // Adiciona um ouvinte de eventos ao campo de pesquisa para chamar a função de filtragem
         document.querySelector(".search-txt").addEventListener("input", filtrarCards);
     </script>
@@ -83,7 +82,7 @@
     <div class="cards">
     <?php foreach ($filmes as $filme):?>
         <div class="card filme-card">
-            <img src="<?=$filme->getImagens()->getCapa()?>">
+            <img src="<?=$filme->getImagens()->getCapaDiretorio()?>">
             <div class="info">
                 <h1><?=$filme->getTitulo() ?></h1>
                 <p><?=$filme->getComentario() ?></p>

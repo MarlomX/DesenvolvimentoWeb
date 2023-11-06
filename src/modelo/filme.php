@@ -12,7 +12,7 @@
 
         private ImagensFilme $imagens;
 
-        public function __construct(int $id, string $titulo, string $comentario, string $sinopse, string $clasificacao, $elenco,  ImagensFilme $imagens, int $nota = 3) {
+        public function __construct(?int $id, string $titulo, string $comentario, string $sinopse, string $clasificacao, $elenco,  ImagensFilme $imagens, int $nota = 3) {
             $this->id = $id;
             $this->titulo = $titulo;
             $this->comentario = $comentario;
@@ -53,6 +53,10 @@
 
         public function getElenco():array{
             return $this->elenco;
+        }
+
+        public function getElencoFormulario():String{
+            return implode(";", $this->elenco);
         }
 
         public function getImagens(): ImagensFilme {

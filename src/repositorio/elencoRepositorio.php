@@ -33,7 +33,7 @@
         }
     
         public function salvar($elenco, int $id)  {
-            while($elenco->size() < 12){
+            while(count($elenco) < 12){
                 $elenco[] = 'placeholder';
             }
             $sql = "INSERT INTO elenco (id_filme, elenco_1, elenco_2, elenco_3, elenco_4,
@@ -57,10 +57,10 @@
         }
 
         public function atualizar($elenco, int $id) {
-            while($elenco->size() < 12){
+            while(count($elenco) < 12){
                 $elenco[] = 'placeholder';
             }
-            $sql = "UPDATE imagens_filme SET elenco_1 = ?, elenco_2 = ?, elenco_3 =?,
+            $sql = "UPDATE elenco SET elenco_1 = ?, elenco_2 = ?, elenco_3 =?,
              elenco_4 = ?, elenco_5 = ?, elenco_6 = ?, elenco_7 = ?, elenco_8 =?,
               elenco_9 = ?, elenco_10 = ?, elenco_11 = ?, elenco_12 =? WHERE id_filme = ?";
             $statement = $this->pdo->prepare($sql);
