@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?=$filme->getTitulo()?></title>
-    <link rel="stylesheet" type="text/css" href="styleCard.css">
+    <link rel="stylesheet" type="text/css" href="css/styleCard.css">
     <link rel="shortcut icon" href=<?=$filme->getImagens()->getLogoDiretorio()?> type="image/x-icon">
     <style>
         body {

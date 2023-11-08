@@ -27,7 +27,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Filmes</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="shortcut icon" href="imagens/Logo.png" type="image/x-icon">
     <header>
         <title>FILMES</title>
@@ -42,11 +42,10 @@
             <div class="menu">
 
                 <ul>
-
                     <li><a href="index.php">Filmes</a></li>
-                    <li><a href="autenticarSessao.php">Menu</a></li>
+                    <li><a href="src/autenticarSessao.php">Menu</a></li>
                     <li><a href="login.php">Login</a></li>
-                    <li><a href="logout.php">Logout</a></li>
+                    <li><a href="src/logout.php">Logout</a></li>
                 </ul>
             </div>
             <div class="search-box">

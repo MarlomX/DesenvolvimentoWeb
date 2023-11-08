@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styleMenu.css">
+    <link rel="stylesheet" type="text/css" href="css/styleMenu.css">
     <title>Edit</title>
 </head>
 <header>
@@ -27,9 +27,9 @@
 
             <ul>
                 <li><a href="index.php">Filmes</a></li>
-                <li><a href="autenticarSessao.php">Menu</a></li>
+                <li><a href="src/autenticarSessao.php">Menu</a></li>
                 <li><a href="login.php">Login</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <li><a href="src/logout.php">Logout</a></li>
             </ul>
         </div>
         <div class="search-box">
@@ -82,10 +82,10 @@
                         <td data-label="Sinopse"><?= $filme->getSinopse() ?></td>
                         <td data-label="Faixa etária" ><?= $filme->getClasificacao() ?></td>
                         <td>
-                            <a href="editar-produto.php?id=<?= $filme->getId()?>" class="botaoEditar" onclick="editarLinha(this)">Editar</a>
+                            <a href="editarFilme.php?id=<?= $filme->getId()?>" class="botaoEditar" onclick="editarLinha(this)">Editar</a>
                         </td>
                         <td>
-                            <form action="remover-filme.php" method="post">
+                            <form action="src/remover-filme.php" method="post">
                                 <input type="hidden" name="id" value="<?= $filme->getId() ?>">
                                 <input type="submit" class="botaoExcluir" value="Excluir">
                             </form>
@@ -96,7 +96,7 @@
         </table>
 
         <!-- Botão para adicionar nova linha -->
-        <a href="cadastrar-produto.php" class="botaoAdicionar">Adicionar Filme </a>
+        <a href="cadastrarFilme.php" class="botaoAdicionar">Adicionar Filme </a>
 
     </div>
 </body>

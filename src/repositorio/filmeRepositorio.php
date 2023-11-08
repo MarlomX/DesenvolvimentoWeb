@@ -1,7 +1,7 @@
 <?php 
-    require_once ("src\\modelo\\filme.php");
-    require_once ("src\\repositorio\\imagensRepositorio.php");
-    require_once ("src\\repositorio\\elencoRepositorio.php");
+    require_once(__DIR__ . "\\..\\modelo\\filme.php");
+    require_once(__DIR__ . "\\imagensRepositorio.php");
+    require_once(__DIR__ . "\\elencoRepositorio.php");
 
     class FilmeRepositorio{
 

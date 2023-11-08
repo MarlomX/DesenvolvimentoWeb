@@ -31,9 +31,9 @@
         }
 
         public function autenticar(string $nickname, string $senha): Bool{
-            $usuario = $this->buscarPorNickname($nickname());
+            $usuario = $this->buscarPorNickname($nickname);
             if($usuario != False) {
-                if($usuario->getSenha() == $senha()){
+                if($usuario->getSenha() == $senha){
                     session_start();
                     $_SESSION['usuario_logado'] = $usuario->getNickname();
                     return True;

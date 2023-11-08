@@ -1,5 +1,6 @@
 <?php
-    require_once("src/modelo/imagensFilme.php");
+    require_once(__DIR__ . "\\imagensFilme.php");
+
 
     class Filme{
         private ?int $id;

@@ -1,5 +1,6 @@
 <?php
-    require_once ("src/modelo/imagensFilme.php");
+    require_once(__DIR__ . "\\..\\modelo\\imagensFilme.php");
+
 
     class ImagensRepositorio{
         
