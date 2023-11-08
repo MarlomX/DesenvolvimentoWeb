@@ -1,0 +1,183 @@
+/* Estilo geral para o body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(80, 1, 119);
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para o elemento main */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .titulo {
+    color: #e509d6;
+    box-sizing: border-box;
+    display: flex;
+    position: absolute;
+    left: 40%;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.5em;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+.logo img {
+    width: 100px;
+
+}
+
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    display: inline;
+    margin-right: 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    border-bottom: 2px solid #e509d6;
+}
+
+.navbar .search-box {
+    position: absolute;
+    /* top: 50%; */
+    left: 87%;
+    transform: translate(-50%, 50%);
+    height: 40px;
+    padding: 10px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 0;
+
+
+}
+
+.navbar .search-box .search-txt {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    line-height: 40px;
+    transition: .2s;
+    width: 0;
+}
+
+.navbar .search-box .search-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.navbar .search-box:hover>.search-txt {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.navbar .search-box:hover>.search-btn {
+    background: white;
+}
+
+/* Estilo para a seção com classe "container-admin-banner" */
+.container-admin-banner {
+    background-color: rgba(111, 4, 117, 0.578);
+    text-align: center;
+    padding: 20px;
+    color: #020202;
+    box-shadow: 0 0 10px rgba(4, 2, 4, 0.564);
+    margin-top: 20px;
+}
+
+/* Estilo para o título dentro da seção "container-admin-banner" */
+.container-admin-banner h1 {
+    font-size: 40px;
+    margin: 0;
+}
+
+.container-admin-banner img {
+    width: 70px;
+    margin: 0;
+}
+
+/* Estilo para a seção com classe "container-form" */
+.container-form {
+    background-color: #a9a5a579;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(4, 2, 4, 0.564);
+    padding: 90px;
+    max-width: 800px;
+    margin: 20px;
+    text-align: center;
+}
+
+/* Estilo para os rótulos (labels) */
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #fb00ff;
+}
+
+/* Estilo para os campos de entrada de texto */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+/* Estilo para os campos de upload de arquivo */
+input[type="file"] {
+    width: 100%;
+    margin-bottom: 15px;
+    border-bottom-color: #fb00ff;
+}
+
+/* Estilo para o botão de cadastrar */
+.botao-cadastrar {
+    background-color: #fb00ff;
+    color: #fff;
+    padding: 20px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(4, 2, 4, 0.564);
+
+}
