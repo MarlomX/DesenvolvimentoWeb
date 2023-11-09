@@ -5,14 +5,14 @@
     require_once ("src\\repositorio\\filmeRepositorio.php");
 
     function defineImagem($aDefinir):string{
-        if (isset($_FILES[$aDefinir])) {
+        if (!empty($_FILES[$aDefinir]['name'])) {
             $nomeOriginal = $_FILES[$aDefinir]['name'];
             $tmpNome = $_FILES[$aDefinir]['tmp_name'];
 
             // Gere um nome único para cada imagemque não passe de 50 caracteres
             $extensao = pathinfo($nomeOriginal, PATHINFO_EXTENSION); // Obtém a extensão do arquivo
             $parteFinalNome = substr($nomeOriginal, -10); // Obtém os últimos 10 caracteres do nome original
-            $uniqidPart = substr(uniqid(), 0, 6); // gera um nome unico que não passe de 40 caracteres
+            $uniqidPart = substr(uniqid(), 0, 30); // gera um nome unico que não passe de 40 caracteres
             $nomeUnico = $uniqidPart . '_' . $parteFinalNome . '.' . $extensao;
           
             
@@ -44,7 +44,7 @@
         if ($logo !== "padrao") {
             $imagens->setLogo($logo);
         }
-        
+
         $trailer = defineImagem('trailer');
         if ($trailer !== "padrao") {
             $imagens->setTrailer($trailer);
@@ -133,11 +133,11 @@
                 <label for="imagem">Envie o logo do filme</label>
                 <input type="file" name="logo" accept="image/*" id="imagem" placeholder="Envie o logo">
 
+                <label for="imagem">Envie o trailer do filme</label>
+                <input type="file" name="trailer" accept="video/*" id="imagem" placeholder="Envie o tralier">
+
                 <label for="imagem">Envie o fundo do filme</label>
                 <input type="file" name="fundo" accept="image/*" id="imagem" placeholder="Envie o fundo">
-
-                <label for="imagem">Envie o trailer do filme</label>
-                <input type="file" name="trailer" id="imagem" placeholder="Envie o tralier">
 
                 <input type="submit" name="cadastro" class="botao-cadastrar" value="Cadastrar filme" />
 

@@ -30,9 +30,6 @@
         }
 
         public function deletar(int $id){
-            $filmeDeletado = $this->buscarPorId( $id );
-            $this->deletarImagensDiretorio( $filmeDeletado );
-
             $sql = "DELETE FROM imagens_filme WHERE id_filme = ?";
             $statement = $this->pdo->prepare($sql);
             $statement->bindValue(1,$id);
@@ -41,20 +38,24 @@
         }
 
         //Exclui as imagens do diretorio se elas não forem as imagens padrão
-        private function deletarImagensDiretorio(imagensFilme $imagensFilme){
-            if($imagensFilme->getCapa() != 'capaPadrao' ){
+        public function deletarImagensDiretorio(imagensFilme $imagensFilme) {
+            if ($imagensFilme->getCapa() != 'capaPadrao.png' && file_exists($imagensFilme->getCapaDiretorio())) {
                 unlink($imagensFilme->getCapaDiretorio());
             }
-            if($imagensFilme->getLogo() != 'logoPadrao' ){
-                unlink($imagensFilme->getLogoDiretorio());
+        
+            if ($imagensFilme->getLogo() != 'logoPadrao.png' && file_exists($imagensFilme->getLogoDiretorio())) {
+                    unlink($imagensFilme->getLogoDiretorio());
             }
-            if($imagensFilme->getTrailer() != 'semTrailer' ){
+        
+            if ($imagensFilme->getTrailer() != 'semTrailer' && file_exists($imagensFilme->getTrailerDiretorio())) {
                 unlink($imagensFilme->getTrailerDiretorio());
             }
-            if($imagensFilme->getFundo() != 'fundoPadrao' ){
+        
+            if ($imagensFilme->getFundo() != 'fundoPadrao.jpg' && file_exists($imagensFilme->getFundoDiretorio())) {
                 unlink($imagensFilme->getFundoDiretorio());
             }
         }
+        
     
         public function salvar(ImagensFilme $imagensFilme, int $id)  {
             $sql = "INSERT INTO imagens_filme (id_filme, capa, logo, trailer, fundo) VALUES (?,?,?,?,?)";
@@ -62,8 +63,8 @@
             $statement->bindValue(1, $id);
             $statement->bindValue(2, $imagensFilme->getCapa());
             $statement->bindValue(3, $imagensFilme->getLogo());
-            $statement->bindValue(4, $imagensFilme->getFundo());
-            $statement->bindValue(5, $imagensFilme->getTrailer());
+            $statement->bindValue(4, $imagensFilme->getTrailer());
+            $statement->bindValue(5, $imagensFilme->getFundo());
             $statement->execute();
         }
 

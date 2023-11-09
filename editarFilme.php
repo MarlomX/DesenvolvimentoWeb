@@ -14,7 +14,7 @@
             // Gere um nome único para cada imagemque não passe de 50 caracteres
             $extensao = pathinfo($nomeOriginal, PATHINFO_EXTENSION); // Obtém a extensão do arquivo
             $parteFinalNome = substr($nomeOriginal, -10); // Obtém os últimos 10 caracteres do nome original
-            $uniqidPart = substr(uniqid(), 0, 6); // gera um nome unico que não passe de 40 caracteres
+            $uniqidPart = substr(uniqid(), 0, 30); // gera um nome unico que não passe de 40 caracteres
             $nomeUnico = $uniqidPart . '_' . $parteFinalNome . '.' . $extensao;
 
             // Defina o diretório de destino para salvar cada imagem
@@ -152,7 +152,7 @@
                 <input type="file" name="fundo" accept="image/*" id="imagem" placeholder="Envie o fundo">
 
                 <label for="imagem">Envie o trailer do filme</label>
-                <input type="file" name="trailer" id="imagem" placeholder="Envie o tralier">
+                <input type="file" name="trailer" accept="video/*" id="imagem" placeholder="Envie o tralier">
 
                 <input type="hidden" name="id" value="<?= $filme->getId()?>">
 

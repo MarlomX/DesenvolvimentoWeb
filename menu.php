@@ -85,7 +85,7 @@
                             <a href="editarFilme.php?id=<?= $filme->getId()?>" class="botaoEditar" onclick="editarLinha(this)">Editar</a>
                         </td>
                         <td>
-                            <form action="src/remover-filme.php" method="post">
+                            <form action="remover-filme.php" method="post">
                                 <input type="hidden" name="id" value="<?= $filme->getId() ?>">
                                 <input type="submit" class="botaoExcluir" value="Excluir">
                             </form>

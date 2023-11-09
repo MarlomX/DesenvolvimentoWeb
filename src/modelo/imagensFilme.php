@@ -5,12 +5,12 @@
         private string $logo;
         private string $fundo;
         private string $trailer;
-        public function __construct(?int $id, string $capa = 'capaPadrao', string $logo = 'logoPadrao', string $trailer = 'semTrailer', string $fundo = 'fundoPadrao' ) {
+        public function __construct(?int $id, string $capa = 'capaPadrao.png', string $logo = 'logoPadrao.png', string $trailer = 'semTrailer', string $fundo = 'fundoPadrao.jpg' ) {
             $this->id = $id;
             $this->capa = $capa;
             $this->logo = $logo;
-            $this->fundo = $fundo;
             $this->trailer = $trailer;
+            $this->fundo = $fundo;
         }
 
         public function getId(): int{
