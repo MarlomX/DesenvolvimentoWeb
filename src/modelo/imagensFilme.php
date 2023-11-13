@@ -1,4 +1,9 @@
 <?php
+    /*
+    uma classe querepresenta todas os arquivos extenos do filme sendo eles:
+    capa, logo, fundo e trailer
+    o ultimo atributo id e para representa de qual fime são essa imagens
+    */
     class ImagensFilme{
         private ?int $id;
         private string $capa;
@@ -13,6 +18,11 @@
             $this->fundo = $fundo;
         }
 
+        /*
+        os metodos dessa classe são divididos em pega apenas o nome do arquivo representado pelos gets
+        e o segundo que e pega todo diretorio que leva ate a imagem.
+        O terceiro define a imagem respectiva.
+        */
         public function getId(): int{
             return $this->id;
         }

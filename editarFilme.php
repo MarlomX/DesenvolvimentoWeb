@@ -1,51 +1,62 @@
 <?php
-
+    //Importa conexaoBD, filme, imegensFilme, filmeRepositorio e imagensRepositorio
     require_once ("src\\conexaoBD.php");
     require_once ("src\\modelo\\filme.php");
     require_once ("src\\modelo\\imagensFilme.php");
     require_once ("src\\repositorio\\filmeRepositorio.php");
     require_once ("src\\repositorio\\imagensRepositorio.php");
 
-    function defineImagem($aDefinir,$imagemAnterior):string{
+    /*
+    função que se o usuario tiver enviado novos arquivo e devolve esse arquivo com um nome unico e formatado
+    alem de enviar esse arquivo para o diretorio de imagens e excluir os arquivos anteriores.
+    */
+    function defineImagem($aDefinir,$arquivoAnterior):string{
+        // $aDesfinir refere a qual tipo de arquivo sera verificada, capa, trailer, fundo ...
+        //$imagemAnterior como o nome sugere e a referencia do arquivo que sera mudada
+
+        //verifica se o usuario enviou o arquivo.
         if (isset($_FILES[$aDefinir]) && $_FILES[$aDefinir]['size'] > 0) {
             $nomeOriginal = $_FILES[$aDefinir]['name'];
             $tmpNome = $_FILES[$aDefinir]['tmp_name'];
       
-            // Gere um nome único para cada imagemque não passe de 50 caracteres
+            // Gere um nome único para cada arquivo que não passe de 50 caracteres para caber no banco de dados
             $extensao = pathinfo($nomeOriginal, PATHINFO_EXTENSION); // Obtém a extensão do arquivo
             $parteFinalNome = substr($nomeOriginal, -10); // Obtém os últimos 10 caracteres do nome original
-            $uniqidPart = substr(uniqid(), 0, 30); // gera um nome unico que não passe de 40 caracteres
-            $nomeUnico = $uniqidPart . '_' . $parteFinalNome . '.' . $extensao;
+            $uniqidPart = substr(uniqid(), 0, 30); // gera um nome unico que não passe de 30 caracteres
+            $nomeUnico = $uniqidPart . '_' . $parteFinalNome . '.' . $extensao; //junta tudo em uma variavel
 
-            // Defina o diretório de destino para salvar cada imagem
+            // Defina o diretório de destino para salvar cada arquivo
             $diretorioDestino = 'imagens\\imagens-filmes\\' . $nomeUnico;
 
-            // Mova a imagem para o diretório de destino
+            // Move o arquivo para o diretório de destino
             move_uploaded_file($tmpNome, $diretorioDestino);
 
-            // Verifique se a imagem anterior existe e a exclua
-            if ($imagemAnterior && file_exists('imagens\\imagens-filmes\\' . $imagemAnterior)) {
-                unlink('imagens\\imagens-filmes\\' . $imagemAnterior);
+            // Verifique se existe um arquivo anterior, e se sim a exclue
+            if ($arquivoAnterior && file_exists('imagens\\imagens-filmes\\' . $arquivoAnterior)) {
+                unlink('imagens\\imagens-filmes\\' . $arquivoAnterior);
             }
-            return $nomeUnico;
+            return $nomeUnico; //retorna o nome do novo arquivo
         }
+        //devolve o valor mantem que significa que não existe arquivo novo, mantendo o anterior
         return "mantem";
     }
 
     $repositorio = new FilmeRepositorio($pdo);
     $repositorioImagem = new ImagensRepositorio($pdo);
 
+    //verifica se o usuario enviou o formulario
     if (isset($_POST['editar'])){
 
+        //busca o filme que sera editado
         $imagens = $repositorioImagem->buscarPorId($_POST['id']);
 
-        // Obtenha as imagens antigas antes de atualizá-las
+        // Obtenha os arquivos antigos antes de atualizá-los
         $capaAnterior = $imagens->getCapa();
         $logoAnterior = $imagens->getLogo();
         $trailerAnterior = $imagens->getTrailer();
         $fundoAnterior = $imagens->getFundo();
 
-        // Verifique se o usuário fez upload de uma nova imagem
+        // Verifique se o usuário fez upload dos arquivos
         $capa = defineImagem('capa',$capaAnterior);
         if ($capa !== "mantem") {
             $imagens->setCapa($capa);
@@ -63,8 +74,10 @@
             $imagens->setFundo($fundo);
         }
         
+        //separa o texto do  elenco por ; e transforma em um array
         $elenco = explode(";", $_POST['elenco']); 
 
+        //junta todas as informações em um objeto filme
         $filme = new Filme($_POST['id'],
             $_POST['titulo'],
             $_POST['comentario'],
@@ -73,10 +86,13 @@
             $elenco,
             $imagens);
 
+        //faz a atualisação no banco de dados
         $repositorio->atualizar($filme);
 
+        // redireciona para a pagina do menu
         header("Location:menu.php");
     } else {
+        //pega o filme que sera editado
         $filme = $repositorio->buscarPorId($_GET['id']);
     }  
     

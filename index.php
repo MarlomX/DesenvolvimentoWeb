@@ -1,14 +1,14 @@
 <?php
-    require "src\\conexaoBD.php";
+    //Importa conexaoBD e o filmeRepositorio
     require "src\\repositorio\\filmeRepositorio.php";
+    require "src\\conexaoBD.php";
 
-    session_start();
-    
+    //Busca todas as  referencias de filmes no banco de dados é colocam dentro de um array chamado $filmes
     $repositorio = new FilmeRepositorio($pdo);
     $filmes = $repositorio->buscaTodos();
-    
 ?>
 
+<!-- Scirpt que verifica se há uma mensagem no URL é a exibe -->
 <script>
     // Verifica se há uma mensagem na URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -55,6 +55,7 @@
                 </a>
         </nav>
     </header>
+    <!-- Scirpt que da a funcionalidade da barra de pesquisa -->
     <script>
         // Função para filtrar os cards com base no texto digitado na pesquisa
         function filtrarCards() {
@@ -79,16 +80,19 @@
 
 <body>
     <div class="cards">
-    <?php foreach ($filmes as $filme):?>
-        <div class="card filme-card">
-            <img src="<?=$filme->getImagens()->getCapaDiretorio()?>">
-            <div class="info">
-                <h1><?=$filme->getTitulo() ?></h1>
-                <p><?=$filme->getComentario() ?></p>
-                <a href="card.php?id=<?= $filme->getId() ?>" class="btn">Mais</a>
+        <!-- Para cada filme na lista $filmes ele criar um card que contem:
+        a imagem da capa o titulo e uma comentario sobre o filme,
+        alem de um botão que direciona para a pagina de card -->
+        <?php foreach ($filmes as $filme):?>
+            <div class="card filme-card">
+                <img src="<?=$filme->getImagens()->getCapaDiretorio()?>">
+                <div class="info">
+                    <h1><?=$filme->getTitulo() ?></h1>
+                    <p><?=$filme->getComentario() ?></p>
+                    <a href="card.php?id=<?= $filme->getId() ?>" class="btn">Mais</a>
+                </div>
             </div>
-        </div>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
 
     </div>
 </body>

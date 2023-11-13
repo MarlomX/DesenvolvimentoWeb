@@ -1,7 +1,9 @@
 <?php
+    //Importa conexaoBD e o filmeRepositorio
     require "src\\conexaoBD.php";
     require "src\\repositorio\\filmeRepositorio.php";
 
+    //busca o filme selecionado
     $repositorio = new FilmeRepositorio($pdo);
     $filme = $repositorio->buscarPorId($_GET['id']);
       
@@ -16,6 +18,7 @@
     <title><?=$filme->getTitulo()?></title>
     <link rel="stylesheet" type="text/css" href="css/styleCard.css">
     <link rel="shortcut icon" href=<?=$filme->getImagens()->getLogoDiretorio()?> type="image/x-icon">
+    <!-- define o fundo -->
     <style>
         body {
             background-image: url('<?=$filme->getImagens()->getFundoDiretorio()?>');
@@ -44,6 +47,7 @@
 
         <div class="estrelas">
             <ul class="avaliacao">
+                <!-- verifica a notado filme -->
                 <?php for ($i = 1; $i <= 5; $i++): ?>
                     <?php if($i == $filme->getNota()):?>
                         <li class="star-icon ativo" data-avaliacao="<?= $i ?>"></li>
@@ -57,19 +61,13 @@
         <div class="elenco">
             <h1>elenco</h1>
 
-
             <ol type="1">
-
                 <?php foreach ($filme->getElenco() as $elenco):?>
                 <li><?=$elenco?></li>
                 <?php endforeach; ?>
-
-
-
             </ol>
         </div>
     </div>
-
     <div class="trailer">
         <video src="<?=$filme->getImagens()->getTrailerDiretorio()?>" controls="true"></video>
         <img src="imagens\imagensCards\close.png" class="close" onclick="toggle();">
@@ -84,10 +82,13 @@
 
         }
     </script>
+    <!-- script que atualisa a nota na pagina e no banco de dados -->
     <script>
+        //verifica se uma estrela foi clicada
         var stars = document.querySelectorAll('.star-icon');
         document.addEventListener('click', function (e) {
             var classStar = e.target.classList;
+            //desativa as estrelas superiores as notas
             if (!classStar.contains('ativo')) {
                 stars.forEach(function (star) {
                     star.classList.remove('ativo');
@@ -102,7 +103,7 @@
 
                 // Faça uma requisição AJAX para enviar os dados para o PHP
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'atualisaNota.php', true);
+                xhr.open('POST', 'atualisaNota.php', true); // envia para o arquivo atualisaNota a nova nota do filme
                 xhr.onreadystatechange = function() {
                 };
                 xhr.send(formData);

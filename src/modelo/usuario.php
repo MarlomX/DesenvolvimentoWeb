@@ -1,5 +1,6 @@
 <?php
 
+    //clase que representa o usuario.
     class Usuario{
         private string $nickname;
         private string $senha;

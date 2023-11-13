@@ -1,18 +1,25 @@
 <?php
+  //Importa conexaoBD e o usuarioRepositorio
   require_once ("src/conexaoBD.php");
   require_once ("src/repositorio/usuarioRepositorio.php");
   
+  //  pega referencia com o banco de dado dos usuarios
   $repositorio = new UsuarioRepositorio($pdo);
   
+  // verifica se apertou o botão de entrar
   if (isset($_POST['entrar'])){
+    //verifica se o usuario e senhaa estão corretos
     if($repositorio->autenticar($_POST['nickname'],$_POST['senha'])){
+      //manda para a pagina inicial com uma mensagem confirma que o login occoreu com sucesso
       header('Location: index.php?mensagem=Usuario+logado+com+sucesso');
       exit; 
     }
+    //manda o usuario para essa mesma pagina com uma menssagem avisando que o login não funcionou.
     header('Location: login.php?mensagem=Senha+e+ou+Usuario+incorreto');
     exit; 
   }
 ?>
+<!-- Scirpt que verifica se há uma mensagem no URL é a exibe -->
 <script>
     // Verifica se há uma mensagem na URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -52,6 +59,7 @@
   </div>
 
   <script src="index.js"></script>
+  <!-- Scirpt que caso o botão de voltar for apertado volta para pagina inicial -->
   <script>
     function voltarParaPaginaInicial() {
       window.location.href = "index.php";

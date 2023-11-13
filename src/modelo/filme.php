@@ -1,7 +1,12 @@
 <?php
+    //Importa imagensFilme
     require_once(__DIR__ . "\\imagensFilme.php");
 
-
+    /*
+    criar uma classe que representa um filme, com os seguites atributos:
+    id, titulo, comentario, sinopse, clasificação, nota, elenco e
+     imagens(que representa todos os arquivos de imagen e video do filme)
+    */
     class Filme{
         private ?int $id;
         private string $titulo;
@@ -24,6 +29,7 @@
             $this->imagens = $imagens;
         }
 
+        //funções do objeto que emsua maioria e para pegao valor de algum dos atributos do filme
         public function getTitulo():string{
             return $this->titulo;
         }

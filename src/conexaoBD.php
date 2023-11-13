@@ -1,3 +1,4 @@
 <?php
-    $pdo = new PDO('mysql:host=localhost;dbname=purple_filmes', 'root', 'MarlomRoot1987');
+    //faz a coneção do banco de dado com o codigo
+$pdo = new PDO(/*conecte o seu banco de dados com o pdo*/);
 ?>

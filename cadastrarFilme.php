@@ -1,40 +1,46 @@
 <?php
+    //Importa conexaoBD, filme, imegensFilme e filmeRepositorio
     require_once ("src\\conexaoBD.php");
     require_once ("src\\modelo\\filme.php");
     require_once ("src\\modelo\\imagensFilme.php");
     require_once ("src\\repositorio\\filmeRepositorio.php");
 
+    /*
+    função que se o usuario tiver enviado arquivos e devolve esse arquivo com um nome unico
+    e formatadoalem de enviar esse arquivo para o diretorio de imagens.
+    */
     function defineImagem($aDefinir):string{
+        // $aDesfinir refere a qual tipo de arquivo sera verificada, capa, trailer, fundo ...
+
+        //verifica se o usuario enviou o arquivo.
         if (!empty($_FILES[$aDefinir]['name'])) {
             $nomeOriginal = $_FILES[$aDefinir]['name'];
             $tmpNome = $_FILES[$aDefinir]['tmp_name'];
 
-            // Gere um nome único para cada imagemque não passe de 50 caracteres
+            // Gere um nome único para cada arquivo que não passe de 50 caracteres
             $extensao = pathinfo($nomeOriginal, PATHINFO_EXTENSION); // Obtém a extensão do arquivo
             $parteFinalNome = substr($nomeOriginal, -10); // Obtém os últimos 10 caracteres do nome original
-            $uniqidPart = substr(uniqid(), 0, 30); // gera um nome unico que não passe de 40 caracteres
-            $nomeUnico = $uniqidPart . '_' . $parteFinalNome . '.' . $extensao;
-          
-            
-            $nomeUnico = uniqid() . $nomeOriginal;
+            $uniqidPart = substr(uniqid(), 0, 30); // gera um nome unico que não passe de 30 caracteres
+            $nomeUnico = $uniqidPart . '_' . $parteFinalNome . '.' . $extensao; //junta tudo em uma variavel
     
-            // Defina o diretório de destino para salvar cada imagem
+            // Defina o diretório de destino para salvar cada arquivo
             $diretorioDestino = 'imagens\imagens-filmes\\' . $nomeUnico;
     
-            // Mova a imagem para o diretório de destino
+            // Move a arquivo para o diretório de destino
             move_uploaded_file($tmpNome, $diretorioDestino);
     
-            return $nomeUnico;
+            return $nomeUnico; //retorna o nome do novo arquivo
         }
-        return "padrao";
+        return "padrao"; //retorna padrão o que faz as imagens serem as imagens padroes
     }
     
-      $repositorio = new FilmeRepositorio($pdo);
-      
+    $repositorio = new FilmeRepositorio($pdo);
+
+    //verifica se o usuario enviou o formulario  
     if (isset($_POST['cadastro'])){
         $imagens = new ImagensFilme(null);
 
-        // Verifique se o usuário fez upload de uma imagem
+        // Verifique se o usuário fez upload dos arquivos
         $capa = defineImagem('capa');
         if ($capa !== "padrao") {
             $imagens->setCapa($capa);
@@ -55,8 +61,10 @@
             $imagens->setFundo($fundo);
         }
 
+        //separa o texto do elenco por ; e transforma em um array
         $elenco = explode(";", $_POST['elenco']); 
 
+        //junta todas as informações em um objeto filme
         $filme = new Filme(null,
             $_POST['titulo'],
             $_POST['comentario'],
@@ -66,9 +74,9 @@
             $imagens);
 
         $repositorio = new FilmeRepositorio($pdo);
-        $repositorio->salvar($filme);
+        $repositorio->salvar($filme); //salva o filme no banco de dados
 
-        header("Location:menu.php");
+        header("Location:menu.php"); // redireciona para a pagina do menu
     };
 ?>
 
